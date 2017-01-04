@@ -12,14 +12,16 @@ Short-read data are deposited in the NCBI short read archive ([SRP064243](http:/
     module load sratoolkit/2.8.0
     fastq-dump -I --split-files SRR2531556
 
-#### Checking read quality with FastQC
+#### Checking read quality with [FastQC](http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/)
     mv *fastq fastq/
     module load fastqc/0.11.3
     fastqc fastq/*fastq
     
-#### trim fastq files
-module load sickle/1.33
-sickle pe -t sanger -f SRR1695160_1.fastq -r SRR1695160_2.fastq -o SRR1695160_1.trimmed.fastq -p SRR1695160_2.trimmed.fastq -s SRR1695160_S.trimmed.fastq
+#### Sequence trimming of adaptor and low quality ends
+We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences below quality threshold.
+
+    module load sickle/1.33
+    sickle pe -t sanger -f SRR1695160_1.fastq -r SRR1695160_2.fastq -o SRR1695160_1.trimmed.fastq -p SRR1695160_2.trimmed.fastq -s SRR1695160_S.trimmed.fastq
 
 ### Maize B73 AGPv3 reference genome
 
