@@ -16,12 +16,14 @@ Short-read data are deposited in the NCBI short read archive ([SRP064243](http:/
     mv *fastq fastq/
     module load fastqc/0.11.3
     fastqc fastq/*fastq
+    # move result files to QCreport folder
+    mv fastq/*zip QCreport/
+    mv fastq/*html QCreport/
     
-#### Sequence trimming of adaptor and low quality ends
-We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences below quality threshold.
+#### Quality trimming and adaptor removal
+We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences below quality threshold, and another popular tool is  [Fastx toolkit](http://hannonlab.cshl.edu/fastx_toolkit/). One more alternative to remove adpaters or primers is [cutadapt](https://cutadapt.readthedocs.io/). Based FastQC results above, illumina universal adaptor removal is necessay, and [Trim Galore](http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) appears to be a really nice wrapper tool of FastQC and Cutadapt, quite easy to use! 
 
-    module load sickle/1.33
-    sickle pe -t sanger -f SRR1695160_1.fastq -r SRR1695160_2.fastq -o SRR1695160_1.trimmed.fastq -p SRR1695160_2.trimmed.fastq -s SRR1695160_S.trimmed.fastq
+    trim_galore_v0.4.2/trim_galore --paired -o trimmed/ fastq/SRR2542701_1.fastq fastq/SRR2542701_2.fastq
 
 ### Maize B73 AGPv3 reference genome
 
