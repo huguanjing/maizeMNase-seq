@@ -23,6 +23,8 @@ Short-read data are deposited in the NCBI short read archive ([SRP064243](http:/
 #### Quality trimming and adaptor removal
 We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences below quality threshold, and another popular tool is  [Fastx toolkit](http://hannonlab.cshl.edu/fastx_toolkit/). One more alternative to remove adpaters or primers is [cutadapt](https://cutadapt.readthedocs.io/). Based FastQC results above, illumina universal adaptor removal is necessay, and [Trim Galore](http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) appears to be a really nice wrapper tool of FastQC and Cutadapt, quite easy to use! 
 
+    module load python 
+    # python needed for Cutadapt
     trim_galore_v0.4.2/trim_galore --paired -o trimmed/ fastq/SRR2542701_1.fastq fastq/SRR2542701_2.fastq
 
 ### Maize B73 reference genome
