@@ -26,10 +26,16 @@ We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences
     module load python 
     # python needed for Cutadapt
     trim_galore_v0.4.2/trim_galore --paired -o trimmed/ fastq/SRR2542701_1.fastq fastq/SRR2542701_2.fastq
+    # check results
+    grep 'Total reads processed' trimmed/*report.txt
+    grep 'Reads with adapters' trimmed/*report.txt
+    grep 'Total written' trimmed/*report.txt
 
 ### Maize B73 reference genome
 Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly, the current version is AGPv4 as describer [here](http://www.maizegdb.org/assembly).
 * 
+#### [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#getting-started-with-bowtie-2-lambda-phage-example)
+    # Indexing a reference genome
 
 ## Read mapping and calling of hypersensive sites
 (Rodgers-Melnick et al. PNAS 2016): "After the computational trimming of adaptor sequences using CutAdapt (40), paired-end reads were mapped to the maize B73 AGPv3 reference genome, using Bowtie2 with options “no-mixed,” “no-discordant,” “no-unal,” and “dovetail” (41) for each replicate digest and for the genomic DNA. BED files were made from the resulting BAM files, using bedtools bamtobed, filtered for minimal alignment quality (≥10), and read coverage in 10-bp intervals was calculated using coverageBed (42). The DNS values were obtained by subtracting the mean normalized depth (in reads per million) of the heavy digest replicates from those of the light digest replicates. In this way, positive DNS values correspond to MNase hypersensitive footprints (as defined by ref. 8; and referred to here as MNase HS regions), whereas negative DNS values correspond to nuclease hyper-resistant footprints (MRF, as per ref. 8). A Bayes factor criterion was used to classify as significantly hypersensitive."
