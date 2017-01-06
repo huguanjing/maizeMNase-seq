@@ -32,10 +32,18 @@ We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences
     grep 'Total written' trimmed/*report.txt >>trimmed/summary.txt
 
 ### Maize B73 reference genome
-Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly, the current version is AGPv4 as describer [here](http://www.maizegdb.org/assembly).
-* 
-#### [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#getting-started-with-bowtie-2-lambda-phage-example)
-    # Indexing a reference genome
+Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly, the current version is AGPv4 as describer [here](http://www.maizegdb.org/assembly). After downloading "Zea_mays.AGPv4.dna.toplevel.fa.gz", make [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#getting-started-with-bowtie-2-lambda-phage-example) reference index for chromosomes (ignoring organellar genomes and scaffolds).
+
+    mkdir maizeRef
+    cd maizeRef
+    zcat Zea_mays.AGPv4.dna.toplevel.fa.gz | head -35105648 >Zea_mays.AGPv4.chr10.fa
+    module load bowtie2
+    bowtie2-build Zea_mays.AGPv4.chr10.fa maize
 
 ## Read mapping and calling of hypersensive sites
+### Bowtie2 mapping
+
+### Differential nucleosome occupancy analysis - [DANPOS2](https://sites.google.com/site/danposdoc/)
+### Profiling Nucleopostioning - [nucleR](http://bioconductor.org/packages/release/bioc/html/nucleR.html) & [NUCwave](http://nucleosome.usal.es/nucwave/)
+
 (Rodgers-Melnick et al. PNAS 2016): "After the computational trimming of adaptor sequences using CutAdapt (40), paired-end reads were mapped to the maize B73 AGPv3 reference genome, using Bowtie2 with options “no-mixed,” “no-discordant,” “no-unal,” and “dovetail” (41) for each replicate digest and for the genomic DNA. BED files were made from the resulting BAM files, using bedtools bamtobed, filtered for minimal alignment quality (≥10), and read coverage in 10-bp intervals was calculated using coverageBed (42). The DNS values were obtained by subtracting the mean normalized depth (in reads per million) of the heavy digest replicates from those of the light digest replicates. In this way, positive DNS values correspond to MNase hypersensitive footprints (as defined by ref. 8; and referred to here as MNase HS regions), whereas negative DNS values correspond to nuclease hyper-resistant footprints (MRF, as per ref. 8). A Bayes factor criterion was used to classify as significantly hypersensitive."
