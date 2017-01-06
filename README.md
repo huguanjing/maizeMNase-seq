@@ -27,9 +27,9 @@ We usually use [Sickle](https://github.com/najoshi/sickle) to trim off sequences
     # python needed for Cutadapt
     trim_galore_v0.4.2/trim_galore --paired -o trimmed/ fastq/SRR2542701_1.fastq fastq/SRR2542701_2.fastq
     # check results
-    grep 'Total reads processed' trimmed/*report.txt
-    grep 'Reads with adapters' trimmed/*report.txt
-    grep 'Total written' trimmed/*report.txt
+    grep 'Total reads processed' trimmed/*report.txt >trimmed/summary.txt
+    grep 'Reads with adapters' trimmed/*report.txt >>trimmed/summary.txt
+    grep 'Total written' trimmed/*report.txt >>trimmed/summary.txt
 
 ### Maize B73 reference genome
 Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly, the current version is AGPv4 as describer [here](http://www.maizegdb.org/assembly).
