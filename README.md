@@ -43,9 +43,10 @@ Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly
 ## Read mapping and calling of hypersensive sites
 ### Bowtie2 mapping
 Default setting should work, while some might need to be modified as required by downstream tools.
-* use `-x maize`: use ref maize genome
 
+    bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq
 
+* `-x maize`: use ref maize genome
 * `-1 trimmed/SRR2542701_1_val_1.fq`: paired end read 1
 * `-2 trimmed/SRR2542701_2_val_2.fq`: paired end read 2
 * `-q`: takes fastq files
@@ -55,11 +56,6 @@ Default setting should work, while some might need to be modified as required by
 * `--no-mixed --no-discordant`: discard discordant mapping
 * `--no-unal`: Suppress SAM records for reads that failed to align.
 * `--dovetail`: allow pair to overlap and over extend
-
-    bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq
-
-
-
 
 ### Differential nucleosome occupancy analysis - [DANPOS2](https://sites.google.com/site/danposdoc/)
 ### Profiling Nucleopostioning - [nucleR](http://bioconductor.org/packages/release/bioc/html/nucleR.html) & [NUCwave](http://nucleosome.usal.es/nucwave/)
