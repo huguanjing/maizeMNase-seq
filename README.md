@@ -42,9 +42,10 @@ Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly
 
 ## Read mapping and calling of hypersensive sites
 ### Bowtie2 mapping
-Default setting should work, while some might need to be modified as required by downstream tools.
+Default setting (`-k 1` report 1 alignment for each read/pair) should work, while some might need to be modified as required by downstream tools.
 
-    bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq
+    mkdir mapping
+    bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maizeRef/maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq -S mapping/SRR2542701.sam 2>SRR2542701.log
 
 * `-x maize`: use ref maize genome
 * `-1 trimmed/SRR2542701_1_val_1.fq`: paired end read 1
@@ -52,7 +53,6 @@ Default setting should work, while some might need to be modified as required by
 * `-q`: takes fastq files
 * `-p 6`: use 6 thread
 * `-t`: Print the amount of wall-clock time taken by each phase.
-* `-k 1`: default, report 1 alignment for each read/pair.
 * `--no-mixed --no-discordant`: discard discordant mapping
 * `--no-unal`: Suppress SAM records for reads that failed to align.
 * `--dovetail`: allow pair to overlap and over extend
