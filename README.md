@@ -48,6 +48,7 @@ Default setting `-k 1` report 1 alignment for each read/pair) should work, while
 
     mkdir mapping
     bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maizeRef/maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq -S mapping/SRR2542701.sam 2>SRR2542701.log
+    samtools view -Sb SRR2542701.sam > SRR2542701.bam
 
 * `-x maize`: use ref maize genome
 * `-1 trimmed/SRR2542701_1_val_1.fq`: paired end read 1
