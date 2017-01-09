@@ -44,7 +44,7 @@ Although (Rodgers-Melnick et al. PNAS 2016) used maize B73 AGPv3 genome assembly
 (Rodgers-Melnick et al. PNAS 2016): "After the computational trimming of adaptor sequences using CutAdapt (40), paired-end reads were mapped to the maize B73 AGPv3 reference genome, using Bowtie2 with options “no-mixed,” “no-discordant,” “no-unal,” and “dovetail” (41) for each replicate digest and for the genomic DNA. BED files were made from the resulting BAM files, using bedtools bamtobed, filtered for minimal alignment quality (≥10), and read coverage in 10-bp intervals was calculated using coverageBed (42). The DNS values were obtained by subtracting the mean normalized depth (in reads per million) of the heavy digest replicates from those of the light digest replicates. In this way, positive DNS values correspond to MNase hypersensitive footprints (as defined by ref. 8; and referred to here as MNase HS regions), whereas negative DNS values correspond to nuclease hyper-resistant footprints (MRF, as per ref. 8). A Bayes factor criterion was used to classify as significantly hypersensitive."
 
 ### Bowtie2 mapping
-Default setting (`-k 1` report 1 alignment for each read/pair) should work, while some might need to be modified as required by downstream tools.
+Default setting `-k 1` report 1 alignment for each read/pair) should work, while some might need to be modified as required by downstream tools.
 
     mkdir mapping
     bowtie2 -q -p 6 -t --no-mixed --no-discordant --no-unal --dovetail -x maizeRef/maize -1 trimmed/SRR2542701_1_val_1.fq -2 trimmed/SRR2542701_2_val_2.fq -S mapping/SRR2542701.sam 2>SRR2542701.log
